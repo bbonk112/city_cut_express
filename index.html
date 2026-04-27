@@ -225,9 +225,7 @@
       min-height: 22rem;
       overflow: hidden;
       position: relative;
-      background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.22)),
-        linear-gradient(145deg, #e3c6b4 0%, #be8f73 55%, #825844 100%);
+      background: #caa48d;
     }
 
     .image-card::before {
@@ -236,6 +234,13 @@
       inset: 1.25rem;
       border: 1px solid rgba(255, 255, 255, 0.26);
       border-radius: 18px;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .image-note {
@@ -343,21 +348,29 @@
       align-items: end;
       color: var(--white);
       overflow: hidden;
-      background:
-        linear-gradient(180deg, transparent 10%, rgba(32, 25, 21, 0.62) 100%),
-        linear-gradient(145deg, #d6b39d 0%, #b27f63 100%);
+      position: relative;
+      background: #b27f63;
     }
 
-    .gallery-card:nth-child(2) {
-      background:
-        linear-gradient(180deg, transparent 10%, rgba(32, 25, 21, 0.62) 100%),
-        linear-gradient(145deg, #ccb19d 0%, #765847 100%);
+    .gallery-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .gallery-card:nth-child(3) {
-      background:
-        linear-gradient(180deg, transparent 10%, rgba(32, 25, 21, 0.62) 100%),
-        linear-gradient(145deg, #bea18b 0%, #594236 100%);
+    .gallery-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 18%, rgba(32, 25, 21, 0.68) 100%);
+    }
+
+    .gallery-card > div {
+      position: relative;
+      z-index: 1;
     }
 
     .gallery-card strong {
@@ -728,9 +741,9 @@
 
         <div class="hero-side">
           <div class="image-card">
+            <img src="images/storefront.webp" alt="Außenansicht von City Cut Express in Fürstenfeldbruck" />
             <div class="image-note">
-              Platz fuer echte Salonfotos: Aussenansicht, Innenraum, Team und zwei bis drei gute
-              Ergebnisbilder machen die Seite spaeter deutlich verkaufsstaerker.
+              Die Aussenansicht gibt direkt Orientierung, macht den Salon wiedererkennbar und funktioniert stark fuer lokale Suche auf dem Handy.
             </div>
           </div>
 
@@ -824,21 +837,24 @@
         </p>
         <div class="gallery">
           <article class="gallery-card">
+            <img src="images/salon-stations.webp" alt="Arbeitsplätze im Innenraum von City Cut Express" />
             <div>
-              <strong>Salon von aussen</strong>
-              <span>Wiedererkennung fuer neue Kunden direkt vor Ort.</span>
+              <strong>Arbeitsplaetze und Spiegel</strong>
+              <span>Der Innenraum wirkt hell, offen und direkt einsatzbereit.</span>
             </div>
           </article>
           <article class="gallery-card">
+            <img src="images/salon-floor.webp" alt="Salonstühle und Innenbereich bei City Cut Express" />
             <div>
-              <strong>Innenraum und Stimmung</strong>
-              <span>Sauberkeit, Licht und Atmosphaere verkaufen viel besser ueber Bilder als ueber Text.</span>
+              <strong>Salonflaeche und Setup</strong>
+              <span>Die Türkiswand und die klaren Stationen geben der Marke einen eigenen Look.</span>
             </div>
           </article>
           <article class="gallery-card">
+            <img src="images/waiting-area.webp" alt="Wartebereich und Produktregal bei City Cut Express" />
             <div>
-              <strong>Ergebnisse</strong>
-              <span>Vorher-Nachher oder starke Detailaufnahmen machen den Unterschied im Pitch.</span>
+              <strong>Wartebereich und Lounge</strong>
+              <span>Auch der Aufenthaltsbereich sieht gepflegt und freundlich aus, das verkauft Vertrauen.</span>
             </div>
           </article>
         </div>
