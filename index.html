@@ -372,18 +372,103 @@
       line-height: 1.6;
     }
 
-    .reviews {
-      grid-template-columns: repeat(3, 1fr);
+    .reviews-marquee {
+      margin-top: 2rem;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     }
 
-    .review-card .review-tag {
-      display: inline-block;
-      margin-bottom: 0.85rem;
-      color: var(--accent-dark);
-      font-size: 0.75rem;
+    .reviews-track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      animation: reviewScroll 120s linear infinite;
+    }
+
+    .reviews-marquee:hover .reviews-track {
+      animation-play-state: paused;
+    }
+
+    .review-card {
+      width: 22rem;
+      min-height: 17rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--panel);
+    }
+
+    .review-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .review-name {
+      display: block;
+      font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      margin-bottom: 0.2rem;
+    }
+
+    .review-source {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .review-rating {
+      flex-shrink: 0;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .review-rating.positive {
+      background: #e6f6ea;
+      color: #21663d;
+    }
+
+    .review-rating.negative {
+      background: #fdeceb;
+      color: #9b3a32;
+    }
+
+    .review-text {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.96rem;
+    }
+
+    .review-time {
+      color: var(--accent-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
+    }
+
+    .review-footnote {
+      margin-top: 1rem;
+      color: rgba(108, 93, 82, 0.78);
+      font-size: 0.86rem;
+      line-height: 1.7;
+    }
+
+    @keyframes reviewScroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(calc(-50% - 0.5rem));
+      }
     }
 
     .contact-layout {
@@ -545,8 +630,7 @@
       .split,
       .contact-layout,
       .services,
-      .gallery,
-      .reviews {
+      .gallery {
         grid-template-columns: 1fr;
       }
 
@@ -585,6 +669,20 @@
       .nav-cta,
       .form-button {
         width: 100%;
+      }
+
+      .reviews-marquee {
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+
+      .reviews-track {
+        animation-duration: 150s;
+      }
+
+      .review-card {
+        width: 18.5rem;
+        min-height: 18rem;
       }
 
       .form-grid {
@@ -752,26 +850,489 @@
         <span class="section-label">Bewertungen</span>
         <h2 class="section-title">Vertrauen sichtbar machen.</h2>
         <p class="section-copy">
-          In einer echten Live-Version kannst du hier kurze freigegebene Zitate oder eingebundene Bewertungen zeigen.
-          Fuer die Demo reicht eine glaubwuerdige Struktur.
+          Ein laufendes Bewertungsband wirkt auf lokalen Unternehmensseiten oft lebendiger als drei starre Karten.
+          Fuer den Pitch ist das ein schoener Weg, um echtes Kundenfeedback sichtbar zu machen.
         </p>
-        <div class="reviews">
-          <article class="review-card">
-            <span class="review-tag">Schneller Service</span>
-            <h3>Kunden wollen vor allem Klarheit und Tempo.</h3>
-            <p>Gerade bei lokalen Friseuren funktionieren Hinweise auf unkomplizierte Termine und verlaesslichen Service sehr gut.</p>
-          </article>
-          <article class="review-card">
-            <span class="review-tag">Preis-Leistung</span>
-            <h3>Ein fairer Eindruck ist oft kaufentscheidend.</h3>
-            <p>Wenn Kunden den Salon als freundlich, sauber und fair wahrnehmen, sollte die Website genau das sichtbar machen.</p>
-          </article>
-          <article class="review-card">
-            <span class="review-tag">Wiederkommen</span>
-            <h3>Stammkundengefuehl laesst sich digital vorbereiten.</h3>
-            <p>Eine warme, ruhige und mobile Seite senkt die Huerde fuer den ersten Besuch und wirkt professioneller als reine Listings.</p>
-          </article>
+        <div class="reviews-marquee">
+          <div class="reviews-track">
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Taim Alnader</span>
+                    <div class="review-source">1 Rezension · 1 Foto</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Ist schnell und macht krasse Schnitte, ist auch gar nicht so teuer, also ich wuerde es jedem empfehlen.</p>
+              </div>
+              <div class="review-time">vor 5 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Jeanette Scherer</span>
+                    <div class="review-source">Local Guide · 111 Rezensionen · 9 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">War jetzt das 2x im Salon, Mitarbeiter sehr freundlich. Wartezeit bei Termin hatte ich bei beiden Malen keine. Die Friseurin ist Griechin und schneidet super gut.</p>
+              </div>
+              <div class="review-time">vor 3 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Franziska Theda Foken-Ullah</span>
+                    <div class="review-source">Local Guide · 17 Rezensionen · 10 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Ein grosses Dankeschoen an den Friseur Aram, der mit viel Geduld und Einfuehlungsvermoegen meinem kleinen Sohn die Haare schnitt. Tolles Team und tolle Preise.</p>
+              </div>
+              <div class="review-time">vor 10 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Loki The Emperor</span>
+                    <div class="review-source">3 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Wenn die dich kennenlernen und moegen, dann geben die alles was sie koennen, um deinen Haarschnitt gut zu machen.</p>
+              </div>
+              <div class="review-time">vor 9 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Edon Jaha</span>
+                    <div class="review-source">1 Rezension</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Der Chef kann auf jeden Fall sehr gut schneiden und war sehr freundlich.</p>
+              </div>
+              <div class="review-time">vor 9 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Christian Brandl</span>
+                    <div class="review-source">8 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Super nett und zuvorkommend, top Herren-Haarschnitt und noch dazu super guenstig. Also von mir alle Daumen hoch, macht weiter so.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">melih. ydz</span>
+                    <div class="review-source">Local Guide · 11 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Sehr vertrauenswuerdiger Friseur, top Schnitt bekommen und ich bin sehr zufrieden.</p>
+              </div>
+              <div class="review-time">vor 9 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Mr.Wasgehtsiedasan</span>
+                    <div class="review-source">Local Guide · 29 Rezensionen · 2 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Der beste, schnellste und guenstigste Friseur in ganz FFB. Die Mitarbeiter sind sehr nett, freundlich und hoeflich.</p>
+              </div>
+              <div class="review-time">vor 3 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Marcel Bosch</span>
+                    <div class="review-source">Local Guide · 66 Rezensionen · 2 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Gehe gerne hierher, wurde noch nie enttaeuscht.</p>
+              </div>
+              <div class="review-time">vor 8 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Nary</span>
+                    <div class="review-source">6 Rezensionen · 1 Foto</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Ich war heute mit meinem Sohn da und bin sehr zufrieden. Die Jungs waren sehr nett, schnell und konnten mit ihm sehr gut umgehen.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Mike Barkowski</span>
+                    <div class="review-source">Local Guide · 29 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Tolles Preis-Leistungsverhaeltnis. War jetzt schon das vierte Mal dort und das nicht ohne Grund, kurze Wartezeiten und gute Arbeit.</p>
+              </div>
+              <div class="review-time">vor einem Jahr</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Yasir Abedalkarem</span>
+                    <div class="review-source">2 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Super Friseur, sehr nett. Man kann sich nicht beschweren, das Endergebnis bei mir sieht immer toll aus.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Florian Roeser</span>
+                    <div class="review-source">4 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Mein Lieblingsfriseur. Schneidet schnell, gut und ohne Termin.</p>
+              </div>
+              <div class="review-time">vor einem Jahr</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Mohammad Haji</span>
+                    <div class="review-source">1 Rezension</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Sehr zufrieden mit dem Haarschnitt und dem Service.</p>
+              </div>
+              <div class="review-time">vor 9 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Alexander Salzweger</span>
+                    <div class="review-source">Local Guide · 247 Rezensionen · 900 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Das war der schnellste Haarschnitt meines Lebens. Die Qualitaet passt absolut. Dazu ein sehr fairer Preis.</p>
+              </div>
+              <div class="review-time">vor 4 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Jakob W.</span>
+                    <div class="review-source">1 Rezension</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Preis-Leistung wirklich top. Boxerschnitt bei mir perfekt den Uebergang geschnitten. Sehr empfehlenswert.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Mirko Rohs</span>
+                    <div class="review-source">3 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Super zufrieden, nettes Personal, Preis-Leistung top. Kann ich nur weiterempfehlen.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Taim Alnader</span>
+                    <div class="review-source">1 Rezension · 1 Foto</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Ist schnell und macht krasse Schnitte, ist auch gar nicht so teuer, also ich wuerde es jedem empfehlen.</p>
+              </div>
+              <div class="review-time">vor 5 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Jeanette Scherer</span>
+                    <div class="review-source">Local Guide · 111 Rezensionen · 9 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">War jetzt das 2x im Salon, Mitarbeiter sehr freundlich. Wartezeit bei Termin hatte ich bei beiden Malen keine. Die Friseurin ist Griechin und schneidet super gut.</p>
+              </div>
+              <div class="review-time">vor 3 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Franziska Theda Foken-Ullah</span>
+                    <div class="review-source">Local Guide · 17 Rezensionen · 10 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Ein grosses Dankeschoen an den Friseur Aram, der mit viel Geduld und Einfuehlungsvermoegen meinem kleinen Sohn die Haare schnitt. Tolles Team und tolle Preise.</p>
+              </div>
+              <div class="review-time">vor 10 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Loki The Emperor</span>
+                    <div class="review-source">3 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Wenn die dich kennenlernen und moegen, dann geben die alles was sie koennen, um deinen Haarschnitt gut zu machen.</p>
+              </div>
+              <div class="review-time">vor 9 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Edon Jaha</span>
+                    <div class="review-source">1 Rezension</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Der Chef kann auf jeden Fall sehr gut schneiden und war sehr freundlich.</p>
+              </div>
+              <div class="review-time">vor 9 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Christian Brandl</span>
+                    <div class="review-source">8 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Super nett und zuvorkommend, top Herren-Haarschnitt und noch dazu super guenstig. Also von mir alle Daumen hoch, macht weiter so.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">melih. ydz</span>
+                    <div class="review-source">Local Guide · 11 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Sehr vertrauenswuerdiger Friseur, top Schnitt bekommen und ich bin sehr zufrieden.</p>
+              </div>
+              <div class="review-time">vor 9 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Mr.Wasgehtsiedasan</span>
+                    <div class="review-source">Local Guide · 29 Rezensionen · 2 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Der beste, schnellste und guenstigste Friseur in ganz FFB. Die Mitarbeiter sind sehr nett, freundlich und hoeflich.</p>
+              </div>
+              <div class="review-time">vor 3 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Marcel Bosch</span>
+                    <div class="review-source">Local Guide · 66 Rezensionen · 2 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Gehe gerne hierher, wurde noch nie enttaeuscht.</p>
+              </div>
+              <div class="review-time">vor 8 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Nary</span>
+                    <div class="review-source">6 Rezensionen · 1 Foto</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Ich war heute mit meinem Sohn da und bin sehr zufrieden. Die Jungs waren sehr nett, schnell und konnten mit ihm sehr gut umgehen.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Mike Barkowski</span>
+                    <div class="review-source">Local Guide · 29 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Tolles Preis-Leistungsverhaeltnis. War jetzt schon das vierte Mal dort und das nicht ohne Grund, kurze Wartezeiten und gute Arbeit.</p>
+              </div>
+              <div class="review-time">vor einem Jahr</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Yasir Abedalkarem</span>
+                    <div class="review-source">2 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Super Friseur, sehr nett. Man kann sich nicht beschweren, das Endergebnis bei mir sieht immer toll aus.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Florian Roeser</span>
+                    <div class="review-source">4 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Mein Lieblingsfriseur. Schneidet schnell, gut und ohne Termin.</p>
+              </div>
+              <div class="review-time">vor einem Jahr</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Mohammad Haji</span>
+                    <div class="review-source">1 Rezension</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Sehr zufrieden mit dem Haarschnitt und dem Service.</p>
+              </div>
+              <div class="review-time">vor 9 Monaten</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Alexander Salzweger</span>
+                    <div class="review-source">Local Guide · 247 Rezensionen · 900 Fotos</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Das war der schnellste Haarschnitt meines Lebens. Die Qualitaet passt absolut. Dazu ein sehr fairer Preis.</p>
+              </div>
+              <div class="review-time">vor 4 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Jakob W.</span>
+                    <div class="review-source">1 Rezension</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Preis-Leistung wirklich top. Boxerschnitt bei mir perfekt den Uebergang geschnitten. Sehr empfehlenswert.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+
+            <article class="review-card">
+              <div>
+                <div class="review-head">
+                  <div>
+                    <span class="review-name">Mirko Rohs</span>
+                    <div class="review-source">3 Rezensionen</div>
+                  </div>
+                  <span class="review-rating positive">5/5</span>
+                </div>
+                <p class="review-text">Super zufrieden, nettes Personal, Preis-Leistung top. Kann ich nur weiterempfehlen.</p>
+              </div>
+              <div class="review-time">vor 2 Jahren</div>
+            </article>
+          </div>
         </div>
+        <p class="review-footnote">Leicht gekuerzte Original-Bewertungen von Google.</p>
       </div>
     </section>
 
