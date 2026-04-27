@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>City Cut Express | Moderner Friseursalon in Fuerstenfeldbruck</title>
+  <title>City Cut Express | Friseur in Fuerstenfeldbruck</title>
   <meta
     name="description"
-    content="Moderner Website-Entwurf fuer City Cut Express in Fuerstenfeldbruck mit Leistungen, Rezensionen, Galerie, Kontaktformular und Karte." />
+    content="Moderner Demo-Auftritt fuer City Cut Express in Fuerstenfeldbruck mit Leistungen, Bewertungen, Bildern, Karte und Kontaktformular." />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -15,31 +15,30 @@
     }
 
     :root {
-      --bg: #f6f1ea;
-      --surface: #fffaf5;
-      --surface-strong: #1f1b18;
-      --surface-soft: #efe6db;
-      --text: #261f19;
-      --muted: #6d6054;
-      --line: rgba(38, 31, 25, 0.12);
-      --accent: #c57b57;
-      --accent-strong: #a95f3f;
-      --accent-soft: #f1d1bf;
+      --bg: #f4efe8;
+      --panel: #fffaf4;
+      --panel-strong: #201915;
+      --text: #271f19;
+      --muted: #6c5d52;
+      --line: rgba(39, 31, 25, 0.12);
+      --accent: #c7774e;
+      --accent-dark: #a75d38;
+      --accent-soft: #efd3c3;
       --white: #ffffff;
-      --shadow: 0 22px 60px rgba(27, 21, 16, 0.08);
+      --shadow: 0 18px 46px rgba(32, 25, 21, 0.08);
+      --radius: 24px;
     }
 
-    html, body {
-      width: 100%;
-      overflow-x: hidden;
+    html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #f7f2ec 0%, #f1ebe3 100%);
       color: var(--text);
-      line-height: 1.5;
+      overflow-x: hidden;
     }
 
     a {
@@ -47,31 +46,19 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
     .container {
       width: min(1120px, calc(100% - 2rem));
       margin: 0 auto;
     }
 
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 1rem;
-      padding: 0.4rem 0.75rem;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 999px;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .section {
+      padding: 4.5rem 0;
     }
 
-    .section-eyebrow {
+    .section-label {
       display: inline-block;
-      margin-bottom: 1rem;
-      color: var(--accent-strong);
+      margin-bottom: 0.9rem;
+      color: var(--accent-dark);
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -79,32 +66,31 @@
     }
 
     .section-title {
-      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
       line-height: 1.02;
       margin-bottom: 1rem;
-      letter-spacing: -0.02em;
     }
 
     .section-copy {
       max-width: 46rem;
       color: var(--muted);
-      font-size: 1.02rem;
       line-height: 1.8;
+      font-size: 1rem;
     }
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(16px);
-      background: rgba(246, 241, 234, 0.88);
-      border-bottom: 1px solid rgba(38, 31, 25, 0.08);
+      z-index: 50;
+      background: rgba(244, 239, 232, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(39, 31, 25, 0.08);
     }
 
     .nav-inner {
       width: min(1120px, calc(100% - 2rem));
       margin: 0 auto;
-      padding: 1rem 0;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -112,69 +98,103 @@
     }
 
     .brand {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .brand span {
-      color: var(--accent-strong);
+      color: var(--accent-dark);
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
       gap: 1.4rem;
+      align-items: center;
       color: var(--muted);
       font-size: 0.95rem;
     }
 
     .nav-links a:hover {
-      color: var(--accent-strong);
+      color: var(--accent-dark);
     }
 
-    .nav-cta {
+    .nav-cta,
+    .button-primary,
+    .button-secondary,
+    .form-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.85rem 1.15rem;
+      min-height: 48px;
+      padding: 0.9rem 1.2rem;
       border-radius: 999px;
-      background: var(--surface-strong);
-      color: var(--white);
       font-weight: 700;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .nav-cta,
+    .button-primary,
+    .form-button {
+      background: var(--panel-strong);
+      color: var(--white);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: var(--white);
+    }
+
+    .nav-cta:hover,
+    .button-primary:hover,
+    .button-secondary:hover,
+    .form-button:hover {
+      transform: translateY(-1px);
     }
 
     .hero {
-      padding: 4rem 0 2rem;
+      padding: 3rem 0 2rem;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 1.5rem;
+      gap: 1.25rem;
       align-items: stretch;
     }
 
-    .hero-copy {
-      background:
-        radial-gradient(circle at top right, rgba(197, 123, 87, 0.18), transparent 32%),
-        linear-gradient(145deg, #221d19 0%, #332921 100%);
-      color: var(--white);
-      border-radius: 28px;
+    .hero-main {
+      min-height: 38rem;
+      border-radius: 30px;
       padding: clamp(2rem, 5vw, 4rem);
-      min-height: 36rem;
+      background:
+        radial-gradient(circle at top right, rgba(199, 119, 78, 0.18), transparent 26%),
+        linear-gradient(145deg, #231c17 0%, #362a22 100%);
+      color: var(--white);
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      box-shadow: var(--shadow);
     }
 
-    .hero-copy p {
-      max-width: 38rem;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 1.05rem;
-      line-height: 1.8;
+    .hero-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-copy {
+      max-width: 40rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.85;
+      font-size: 1.02rem;
     }
 
     .hero-actions {
@@ -184,223 +204,196 @@
       flex-wrap: wrap;
     }
 
-    .button-primary,
-    .button-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 3.25rem;
-      padding: 0.9rem 1.25rem;
-      border-radius: 999px;
-      font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-    }
-
-    .button-primary {
-      background: var(--accent);
-      color: var(--surface-strong);
-    }
-
-    .button-secondary {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--white);
-    }
-
-    .button-primary:hover,
-    .button-secondary:hover,
-    .nav-cta:hover {
-      transform: translateY(-1px);
-    }
-
     .hero-side {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .hero-card,
-    .trust-card,
-    .service-card,
-    .gallery-card,
-    .review-card,
-    .info-card,
-    .form-card,
-    .faq-card {
-      border-radius: 24px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-photo {
-      min-height: 23rem;
-      background:
-        linear-gradient(135deg, rgba(197, 123, 87, 0.12), rgba(38, 31, 25, 0.1)),
-        linear-gradient(160deg, #e6d3c3, #c8ab95);
-      padding: 1.5rem;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .placeholder-note {
-      max-width: 16rem;
-      padding: 0.95rem 1rem;
-      border-radius: 18px;
-      background: rgba(255, 250, 245, 0.88);
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .trust-card {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      overflow: hidden;
-      background: rgba(38, 31, 25, 0.08);
-    }
-
-    .trust-item {
-      padding: 1.35rem;
-      background: var(--surface);
-    }
-
-    .trust-item strong {
-      display: block;
-      margin-bottom: 0.35rem;
-      font-size: 1.2rem;
-    }
-
-    section {
-      padding: 4rem 0;
-    }
-
-    .about-layout,
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-
-    .about-block,
-    .map-wrap {
-      padding: clamp(1.5rem, 4vw, 2rem);
-    }
-
-    .about-block {
-      background: var(--surface);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .about-list {
-      margin-top: 1.5rem;
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .about-list div {
-      padding: 1rem 1.1rem;
-      border-radius: 18px;
-      background: var(--surface-soft);
-      color: var(--muted);
-    }
-
-    .services-grid,
-    .gallery-grid,
-    .reviews-grid,
-    .faq-grid {
-      margin-top: 2rem;
       display: grid;
       gap: 1.25rem;
     }
 
-    .services-grid {
+    .card,
+    .image-card,
+    .service-card,
+    .review-card,
+    .info-card,
+    .contact-card,
+    .gallery-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .image-card {
+      min-height: 22rem;
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.22)),
+        linear-gradient(145deg, #e3c6b4 0%, #be8f73 55%, #825844 100%);
+    }
+
+    .image-card::before {
+      content: "";
+      position: absolute;
+      inset: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: 18px;
+    }
+
+    .image-note {
+      position: absolute;
+      left: 1.4rem;
+      right: 1.4rem;
+      bottom: 1.4rem;
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      background: rgba(255, 250, 244, 0.92);
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      background: rgba(39, 31, 25, 0.08);
+    }
+
+    .stat {
+      padding: 1.3rem;
+      background: var(--panel);
+    }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1.15rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .card {
+      padding: 2rem;
+    }
+
+    .feature-list {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .feature-list div {
+      padding: 1rem 1.05rem;
+      border-radius: 18px;
+      background: var(--accent-soft);
+      color: #5f4b3f;
+      line-height: 1.7;
+    }
+
+    .services,
+    .reviews,
+    .gallery {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .services {
       grid-template-columns: repeat(4, 1fr);
     }
 
-    .service-card {
+    .service-card,
+    .review-card {
       padding: 1.5rem;
       border: 1px solid var(--line);
     }
 
-    .service-card h3 {
-      margin-bottom: 0.75rem;
-      font-size: 1.15rem;
+    .service-card h3,
+    .review-card h3 {
+      margin-bottom: 0.7rem;
+      font-size: 1.08rem;
     }
 
-    .service-card p {
+    .service-card p,
+    .review-card p {
       color: var(--muted);
       line-height: 1.75;
       font-size: 0.96rem;
     }
 
-    .gallery-grid {
+    .gallery {
       grid-template-columns: repeat(3, 1fr);
     }
 
     .gallery-card {
       min-height: 20rem;
-      padding: 1.4rem;
+      padding: 1.35rem;
       display: flex;
-      align-items: flex-end;
-      background:
-        linear-gradient(180deg, transparent 10%, rgba(31, 27, 24, 0.62) 100%),
-        linear-gradient(150deg, #d9c1ae 0%, #bb8f72 50%, #8f5f46 100%);
+      align-items: end;
       color: var(--white);
       overflow: hidden;
+      background:
+        linear-gradient(180deg, transparent 10%, rgba(32, 25, 21, 0.62) 100%),
+        linear-gradient(145deg, #d6b39d 0%, #b27f63 100%);
     }
 
     .gallery-card:nth-child(2) {
       background:
-        linear-gradient(180deg, transparent 10%, rgba(31, 27, 24, 0.62) 100%),
-        linear-gradient(140deg, #ceb29a 0%, #7f614f 100%);
+        linear-gradient(180deg, transparent 10%, rgba(32, 25, 21, 0.62) 100%),
+        linear-gradient(145deg, #ccb19d 0%, #765847 100%);
     }
 
     .gallery-card:nth-child(3) {
       background:
-        linear-gradient(180deg, transparent 10%, rgba(31, 27, 24, 0.62) 100%),
-        linear-gradient(145deg, #b9a18c 0%, #513f33 100%);
+        linear-gradient(180deg, transparent 10%, rgba(32, 25, 21, 0.62) 100%),
+        linear-gradient(145deg, #bea18b 0%, #594236 100%);
     }
 
     .gallery-card strong {
       display: block;
-      font-size: 1.1rem;
       margin-bottom: 0.35rem;
+      font-size: 1.08rem;
     }
 
     .gallery-card span {
-      display: block;
-      font-size: 0.92rem;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.93rem;
+      line-height: 1.6;
     }
 
-    .reviews-grid {
+    .reviews {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .review-card {
-      padding: 1.6rem;
-      border: 1px solid var(--line);
-    }
-
-    .review-card strong {
-      display: block;
-      margin-bottom: 0.8rem;
-      font-size: 0.95rem;
+    .review-card .review-tag {
+      display: inline-block;
+      margin-bottom: 0.85rem;
+      color: var(--accent-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--accent-strong);
-    }
-
-    .review-card p {
-      color: var(--muted);
-      line-height: 1.8;
     }
 
     .contact-layout {
-      grid-template-columns: 0.95fr 1.05fr;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 1.25rem;
+      align-items: start;
     }
 
-    .info-stack {
+    .contact-stack {
       display: grid;
       gap: 1rem;
     }
@@ -411,20 +404,21 @@
     }
 
     .info-card h3 {
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.75rem;
       font-size: 1.05rem;
     }
 
     .info-card p,
     .info-card li {
       color: var(--muted);
-      line-height: 1.75;
+      line-height: 1.8;
+      font-size: 0.96rem;
     }
 
     .hours {
       list-style: none;
       display: grid;
-      gap: 0.55rem;
+      gap: 0.5rem;
     }
 
     .hours li {
@@ -440,28 +434,22 @@
       padding-bottom: 0;
     }
 
-    .map-wrap {
-      background: var(--surface);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-    }
-
     .map-frame {
-      margin-top: 1.25rem;
       overflow: hidden;
+      margin-top: 1rem;
       border-radius: 18px;
       border: 1px solid var(--line);
     }
 
     .map-frame iframe {
       width: 100%;
-      height: 19rem;
+      height: 18rem;
       border: 0;
       display: block;
     }
 
-    .form-card {
-      padding: clamp(1.5rem, 4vw, 2rem);
+    .contact-card {
+      padding: 2rem;
       border: 1px solid var(--line);
     }
 
@@ -482,22 +470,22 @@
     }
 
     label {
-      font-size: 0.82rem;
+      color: var(--muted);
+      font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--muted);
     }
 
     input,
     select,
     textarea {
       width: 100%;
+      padding: 0.95rem 1rem;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: var(--white);
       color: var(--text);
-      padding: 0.95rem 1rem;
       font: inherit;
       resize: vertical;
     }
@@ -506,7 +494,7 @@
       min-height: 9rem;
     }
 
-    .form-actions {
+    .form-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -514,54 +502,37 @@
       flex-wrap: wrap;
     }
 
-    .form-note,
-    .micro-note {
+    .form-note {
       color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.7;
+      max-width: 20rem;
     }
 
-    .success {
+    .success-box {
       display: none;
       margin-top: 1rem;
       padding: 1rem 1.1rem;
       border-radius: 16px;
-      background: #e7f6ea;
-      color: #23663c;
-      border: 1px solid rgba(35, 102, 60, 0.14);
-    }
-
-    .faq-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .faq-card {
-      padding: 1.5rem;
-      border: 1px solid var(--line);
-    }
-
-    .faq-card h3 {
-      margin-bottom: 0.75rem;
-      font-size: 1.05rem;
-    }
-
-    .faq-card p {
-      color: var(--muted);
-      line-height: 1.75;
+      background: #e8f5ea;
+      border: 1px solid rgba(44, 105, 63, 0.18);
+      color: #2c693f;
+      line-height: 1.6;
+      font-size: 0.94rem;
     }
 
     footer {
-      padding: 2rem 0 3rem;
+      padding: 1rem 0 3rem;
     }
 
     .footer-bar {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      align-items: center;
       padding: 1.2rem 1.3rem;
       border-radius: 22px;
-      background: var(--surface-strong);
+      background: var(--panel-strong);
       color: rgba(255, 255, 255, 0.74);
     }
 
@@ -571,29 +542,24 @@
 
     @media (max-width: 980px) {
       .hero-grid,
-      .about-layout,
+      .split,
       .contact-layout,
-      .services-grid,
-      .gallery-grid,
-      .reviews-grid,
-      .faq-grid {
+      .services,
+      .gallery,
+      .reviews {
         grid-template-columns: 1fr;
       }
 
-      .hero-copy {
+      .hero-main {
         min-height: auto;
       }
 
-      .trust-card {
+      .stats {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 760px) {
-      .nav-inner {
-        padding: 0.9rem 0;
-      }
-
       .nav-links {
         display: none;
       }
@@ -608,14 +574,16 @@
       }
 
       .hero-actions,
-      .form-actions {
+      .form-row,
+      .footer-bar {
         flex-direction: column;
         align-items: stretch;
       }
 
       .button-primary,
       .button-secondary,
-      .nav-cta {
+      .nav-cta,
+      .form-button {
         width: 100%;
       }
 
@@ -625,12 +593,7 @@
 
       .hours li {
         flex-direction: column;
-        gap: 0.25rem;
-      }
-
-      .footer-bar {
-        flex-direction: column;
-        align-items: flex-start;
+        gap: 0.2rem;
       }
     }
   </style>
@@ -638,12 +601,12 @@
 <body>
   <nav>
     <div class="nav-inner">
-      <a href="#top" class="brand">City Cut <span>Express</span></a>
+      <a class="brand" href="#top">City Cut <span>Express</span></a>
       <div class="nav-links">
-        <a href="#ueberblick">Salon</a>
+        <a href="#salon">Salon</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#bewertungen">Bewertungen</a>
-        <a href="#kontakt" class="nav-cta">Termin anfragen</a>
+        <a href="#kontakt" class="nav-cta">Kontakt</a>
       </div>
     </div>
   </nav>
@@ -651,176 +614,178 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Entwurf fuer Akquise und Vercel-Launch</span>
-          <h1 class="section-title">Moderne Salon-Website fuer City Cut Express.</h1>
-          <p>
-            Diese Demo ist als Verkaufsentwurf fuer einen lokalen Friseursalon gebaut:
-            klarer erster Eindruck, schnelle Kontaktaufnahme, sichtbare Leistungen,
-            vertrauensbildende Rezensionen und eine direkte Karte fuer Laufkundschaft.
+        <div class="hero-main">
+          <span class="hero-badge">Moderner Demo-Auftritt fuer lokale Akquise</span>
+          <h1 class="section-title">City Cut Express modern, mobil und sofort verstaendlich.</h1>
+          <p class="hero-copy">
+            Diese Version ist bewusst als saubere statische HTML gebaut, damit sie lokal und auf Vercel
+            ohne Zusatz-Setup funktioniert. Sie zeigt Leistungen, Vertrauen, Bilder, Standort und ein
+            Kontaktformular in einer klaren One-Page-Struktur.
           </p>
           <div class="hero-actions">
-            <a class="button-primary" href="#kontakt">Kontaktformular ansehen</a>
-            <a class="button-secondary" href="#galerie">Bildbereich ansehen</a>
+            <a href="#kontakt" class="button-primary">Termin anfragen</a>
+            <a href="#galerie" class="button-secondary">Bilder ansehen</a>
           </div>
         </div>
 
         <div class="hero-side">
-          <div class="hero-card hero-photo">
-            <div class="placeholder-note">
-              Eigene Fotos vom Salon, Team und Haarschnitten hier einsetzen.
-              Fuer den echten Launch solltest du nur Kundenfotos mit Freigabe oder eigene Aufnahmen verwenden.
+          <div class="image-card">
+            <div class="image-note">
+              Platz fuer echte Salonfotos: Aussenansicht, Innenraum, Team und zwei bis drei gute
+              Ergebnisbilder machen die Seite spaeter deutlich verkaufsstaerker.
             </div>
           </div>
 
-          <div class="trust-card">
-            <div class="trust-item">
-              <strong>Walk-in freundlich</strong>
-              <span class="micro-note">Starker Fokus auf schnelle, unkomplizierte Termine und Laufkundschaft.</span>
+          <div class="stats">
+            <div class="stat">
+              <strong>Schneller Eindruck</strong>
+              <span>Telefon, Leistungen und Standort sind direkt sichtbar.</span>
             </div>
-            <div class="trust-item">
-              <strong>Faire Preise</strong>
-              <span class="micro-note">Preis-Leistung ist eines der wiederkehrenden Themen in oeffentlichen Bewertungen.</span>
+            <div class="stat">
+              <strong>Mobile first</strong>
+              <span>Die Seite ist so gebaut, dass sie auf dem Handy ruhig und sauber bleibt.</span>
             </div>
-            <div class="trust-item">
-              <strong>Lokal sichtbar</strong>
-              <span class="micro-note">Adresse, Anruf und Route sind auf der Startseite sofort erreichbar.</span>
+            <div class="stat">
+              <strong>Verkaufsfaehig</strong>
+              <span>Ideal als Demo, um lokalen Firmen einen besseren Auftritt zu zeigen.</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="ueberblick">
-      <div class="container about-layout">
-        <div class="about-block">
-          <span class="section-eyebrow">Ueber den Salon</span>
-          <h2 class="section-title">Schnell, sauber, nahbar.</h2>
+    <section class="section" id="salon">
+      <div class="container split">
+        <div class="card">
+          <span class="section-label">Der Salon</span>
+          <h2 class="section-title">Weniger Branchenbuch, mehr echter Auftritt.</h2>
           <p class="section-copy">
-            Fuer lokale Salons muss eine Website nicht riesig sein. Sie muss sofort drei Fragen beantworten:
-            Was bekommt man hier, warum sollte man genau hier hingehen und wie erreicht man den Salon ohne Umwege.
-            Dieser Entwurf spielt genau darauf.
+            Kleine Unternehmen brauchen oft keine grosse Website. Sie brauchen eine Seite, die sofort
+            Vertrauen erzeugt, auf dem Handy gut aussieht und Kontakt so leicht wie moeglich macht.
           </p>
-          <div class="about-list">
-            <div>Klare Startseite mit starkem Erstkontakt statt ueberladener Navigation.</div>
-            <div>Leistungsueberblick fuer Herren, Kinder, Farbe, Styling und Bartpflege.</div>
-            <div>Rezensionsbereich mit wiederkehrenden Kundenthemen aus oeffentlichen Eintraegen.</div>
-            <div>Kontaktformular plus direkte Telefonnummer fuer Menschen, die lieber sofort anrufen.</div>
+          <div class="feature-list">
+            <div>Klare Startseite mit direktem Fokus auf Leistungen und Kontakt.</div>
+            <div>Rezensionsbereich als Vertrauenssignal fuer neue Kunden.</div>
+            <div>Bildbereich fuer echte Fotos von Salon, Team und Ergebnissen.</div>
+            <div>Google Map und Oeffnungszeiten ohne Umwege erreichbar.</div>
           </div>
         </div>
 
-        <div class="about-block">
-          <span class="section-eyebrow">Was vor Go-live noch fehlt</span>
-          <h2 class="section-title">Die letzten 20 Prozent machen den Unterschied.</h2>
+        <div class="card">
+          <span class="section-label">Vor dem Livegang</span>
+          <h2 class="section-title">Die letzten Details machen die Seite glaubwuerdig.</h2>
           <p class="section-copy">
-            Fuer eine echte Kundenwebsite solltest du vor der Veroeffentlichung noch echte Fotos, bestaetigte Oeffnungszeiten,
-            ein Impressum, eine Datenschutzerklaerung und die finale Freigabe des Inhabers ergaenzen.
+            Vor dem echten Go-live solltest du Oeffnungszeiten, Fotos, Impressum, Datenschutz und
+            die finale Freigabe des Inhabers einpflegen. Technisch ist die Seite bewusst schlank gehalten.
           </p>
-          <div class="about-list">
-            <div>Finale Pruefung von Adresse, Telefonnummer und Oeffnungszeiten.</div>
-            <div>Eigene Bilder vom Salon, Team und idealerweise 2 bis 4 Vorher-Nachher-Motive.</div>
-            <div>Rechtstexte und Kontakt-E-Mail fuer das Formular.</div>
-            <div>Optional: Online-Buchung spaeter mit Treatwell, Planity oder einem eigenen Tool verknuepfen.</div>
+          <div class="feature-list">
+            <div>Echte Bilder statt Platzhalter.</div>
+            <div>Finale Telefonnummer, E-Mail und Oeffnungszeiten pruefen.</div>
+            <div>Rechtstexte sauber einbauen.</div>
+            <div>Formular spaeter mit Vercel-Backend verbinden.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="leistungen">
+    <section class="section" id="leistungen">
       <div class="container">
-        <span class="section-eyebrow">Leistungen</span>
-        <h2 class="section-title">Das Angebot auf einen Blick.</h2>
+        <span class="section-label">Leistungen</span>
+        <h2 class="section-title">Das Angebot schnell erfassbar machen.</h2>
         <p class="section-copy">
-          Fuer den ersten Entwurf habe ich das Leistungsbild an oeffentlich sichtbaren Eintraegen orientiert.
-          Vor dem finalen Launch solltest du die genauen Kategorien mit dem Saloninhaber abstimmen.
+          Fuer den Pitch reicht ein sauberer Leistungsueberblick. Spaeter kannst du Preise, Dauer oder
+          Spezialleistungen noch gezielt erweitern.
         </p>
-        <div class="services-grid">
+        <div class="services">
           <article class="service-card">
             <h3>Herrenhaarschnitt</h3>
-            <p>Saubere Schnitte, schnelle Termine und alltagstaugliche Styles fuer Stammkunden und Laufkundschaft.</p>
+            <p>Klare Ansprache fuer Stammkunden und spontane Laufkundschaft mit Fokus auf Schnelligkeit und sauberen Schnitt.</p>
           </article>
           <article class="service-card">
             <h3>Kinderhaarschnitt</h3>
-            <p>Einfacher Service fuer Familien, mit klarer Ansprache und kurzer Entscheidungsstrecke auf der Website.</p>
+            <p>Familien suchen oft einfache Orientierung. Ein eigener Block dafuer macht die Seite alltagstauglicher.</p>
           </article>
           <article class="service-card">
             <h3>Farbe und Styling</h3>
-            <p>Frauenhaarschnitt, Coloration und Styling sollten als eigener Block sichtbar bleiben, falls der Salon das aktiv anbietet.</p>
+            <p>Falls der Salon es anbietet, sollte dieser Bereich sichtbar sein und nicht nur irgendwo im Fliesstext stehen.</p>
           </article>
           <article class="service-card">
             <h3>Bart und Finish</h3>
-            <p>Bei Barbershop-naher Zielgruppe lohnt sich eine extra Karte fuer Bartpflege, Konturen und schnelles Fresh-up.</p>
+            <p>Gerade bei barbershopnahen Kunden ist Bartpflege oft ein guter Trigger fuer wiederkehrende Besuche.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="galerie">
+    <section class="section" id="galerie">
       <div class="container">
-        <span class="section-eyebrow">Bildbereich</span>
-        <h2 class="section-title">Hier wuerden echte Fotos verkaufen.</h2>
+        <span class="section-label">Galerie</span>
+        <h2 class="section-title">Hier sollten spaeter die echten Fotos verkaufen.</h2>
         <p class="section-copy">
-          Gerade bei kleinen Unternehmen sind Bilder oft der staerkste Vertrauenshebel. Mit 6 bis 9 guten Fotos wirkt dieselbe Seite sofort deutlich hochwertiger.
+          Drei bis sechs starke Bilder reichen oft schon, damit die Seite sofort hochwertiger und glaubwuerdiger wirkt.
         </p>
-        <div class="gallery-grid">
+        <div class="gallery">
           <article class="gallery-card">
             <div>
               <strong>Salon von aussen</strong>
-              <span>Hilft sofort bei Laufkundschaft und Wiedererkennung vor Ort.</span>
+              <span>Wiedererkennung fuer neue Kunden direkt vor Ort.</span>
             </div>
           </article>
           <article class="gallery-card">
             <div>
-              <strong>Innenraum und Team</strong>
-              <span>Sauberkeit, Atmosphaere und Freundlichkeit werden ueber Bilder besser verkauft als ueber Text.</span>
+              <strong>Innenraum und Stimmung</strong>
+              <span>Sauberkeit, Licht und Atmosphaere verkaufen viel besser ueber Bilder als ueber Text.</span>
             </div>
           </article>
           <article class="gallery-card">
             <div>
-              <strong>Vorher und nachher</strong>
-              <span>Am besten mit echter Kundeneinwilligung und einheitlichem Licht.</span>
+              <strong>Ergebnisse</strong>
+              <span>Vorher-Nachher oder starke Detailaufnahmen machen den Unterschied im Pitch.</span>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="bewertungen">
+    <section class="section" id="bewertungen">
       <div class="container">
-        <span class="section-eyebrow">Bewertungen</span>
-        <h2 class="section-title">Was oeffentliche Rezensionen ueber den Salon signalisieren.</h2>
+        <span class="section-label">Bewertungen</span>
+        <h2 class="section-title">Vertrauen sichtbar machen.</h2>
         <p class="section-copy">
-          Diese Karten sind bewusst als sinngemaesse Zusammenfassung gebaut. Fuer den Livegang kannst du spaeter echte, kurze Zitate mit Quelle und Freigabe einsetzen.
+          In einer echten Live-Version kannst du hier kurze freigegebene Zitate oder eingebundene Bewertungen zeigen.
+          Fuer die Demo reicht eine glaubwuerdige Struktur.
         </p>
-        <div class="reviews-grid">
+        <div class="reviews">
           <article class="review-card">
-            <strong>Wiederkehrendes Thema</strong>
-            <p>Mehrere oeffentliche Eintraege heben schnelles Arbeiten und ein starkes Preis-Leistungs-Verhaeltnis hervor.</p>
+            <span class="review-tag">Schneller Service</span>
+            <h3>Kunden wollen vor allem Klarheit und Tempo.</h3>
+            <p>Gerade bei lokalen Friseuren funktionieren Hinweise auf unkomplizierte Termine und verlaesslichen Service sehr gut.</p>
           </article>
           <article class="review-card">
-            <strong>Kundeneindruck</strong>
-            <p>Freundlichkeit und unkomplizierter Service werden mehrfach positiv erwaehnt, besonders bei Stammkunden.</p>
+            <span class="review-tag">Preis-Leistung</span>
+            <h3>Ein fairer Eindruck ist oft kaufentscheidend.</h3>
+            <p>Wenn Kunden den Salon als freundlich, sauber und fair wahrnehmen, sollte die Website genau das sichtbar machen.</p>
           </article>
           <article class="review-card">
-            <strong>Wichtiger Hebel</strong>
-            <p>Ein sauber gestalteter Bewertungsbereich kann den ersten Eindruck deutlich professioneller machen als ein reiner Branchenbucheintrag.</p>
+            <span class="review-tag">Wiederkommen</span>
+            <h3>Stammkundengefuehl laesst sich digital vorbereiten.</h3>
+            <p>Eine warme, ruhige und mobile Seite senkt die Huerde fuer den ersten Besuch und wirkt professioneller als reine Listings.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="kontakt">
+    <section class="section" id="kontakt">
       <div class="container contact-layout">
-        <div class="info-stack">
+        <div class="contact-stack">
           <article class="info-card">
-            <h3>Standort</h3>
+            <h3>Adresse</h3>
             <p>City Cut Express<br />Schoengeisinger Str. 13<br />82256 Fuerstenfeldbruck</p>
           </article>
 
           <article class="info-card">
-            <h3>Kontakt</h3>
+            <h3>Telefon</h3>
             <p><a href="tel:+4981415272683">+49 8141 5272683</a></p>
-            <p class="micro-note">Tipp fuer die Verkaufsfassung: Den Call-Button auf Mobilgeraeten besonders prominent machen.</p>
           </article>
 
           <article class="info-card">
@@ -832,9 +797,9 @@
             </ul>
           </article>
 
-          <article class="map-wrap">
-            <span class="section-eyebrow">Karte</span>
-            <h2 style="font-size:1.5rem;">Sofort sehen, wo der Salon ist.</h2>
+          <article class="info-card">
+            <h3>Karte</h3>
+            <p>Der Standort ist direkt eingebettet, damit Nutzer sofort Route, Lage und Umgebung sehen.</p>
             <div class="map-frame">
               <iframe
                 src="https://www.google.com/maps?q=Schoengeisinger+Str.+13,+82256+Fuerstenfeldbruck&z=16&output=embed"
@@ -846,12 +811,12 @@
           </article>
         </div>
 
-        <article class="form-card">
-          <span class="section-eyebrow">Kontaktformular</span>
-          <h2 style="font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1rem;">Termin oder Rueckruf anfragen</h2>
+        <article class="contact-card">
+          <span class="section-label">Kontaktformular</span>
+          <h2 style="font-size: clamp(1.8rem, 4vw, 2.7rem); margin-bottom: 1rem;">Rueckruf oder Termin anfragen</h2>
           <p class="section-copy" style="max-width:none; margin-bottom: 1.5rem;">
-            Das Formular ist in diesem Entwurf als Frontend-Demo angelegt. Fuer den echten Einsatz kann ich dir das als
-            Vercel Function mit E-Mail-Versand aufsetzen.
+            Aktuell ist das Formular als Demo eingebaut. Im echten Einsatz wuerde ich es ueber eine
+            Vercel Function an eine E-Mail-Adresse des Salons weiterleiten.
           </p>
 
           <form id="contactForm">
@@ -883,41 +848,20 @@
 
               <div class="field full">
                 <label for="message">Nachricht</label>
-                <textarea id="message" name="message" placeholder="Kurze Info zu deinem Wunsch oder Rueckrufzeit."></textarea>
+                <textarea id="message" name="message" placeholder="Kurze Info zum Wunsch oder zur besten Rueckrufzeit."></textarea>
               </div>
             </div>
 
-            <div class="form-actions">
-              <button type="submit" class="button-primary" style="border:none; cursor:pointer;">Anfrage absenden</button>
-              <p class="form-note">Spaeter auf Vercel am besten mit Rate-Limit, Honeypot und E-Mail-Weiterleitung absichern.</p>
+            <div class="form-row">
+              <button type="submit" class="form-button" style="border:none; cursor:pointer;">Anfrage senden</button>
+              <p class="form-note">Fuer den Livebetrieb spaeter mit Spam-Schutz und E-Mail-Versand absichern.</p>
             </div>
 
-            <div class="success" id="successBox">
-              Danke. In der Live-Version wuerde diese Anfrage direkt per E-Mail an den Salon weitergeleitet.
+            <div class="success-box" id="successBox">
+              Danke. In der Live-Version wuerde diese Nachricht direkt an den Salon weitergeleitet.
             </div>
           </form>
         </article>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="container">
-        <span class="section-eyebrow">Verkaufslogik</span>
-        <h2 class="section-title">Warum diese Struktur fuer kleine Unternehmen gut funktioniert.</h2>
-        <div class="faq-grid">
-          <article class="faq-card">
-            <h3>Nicht zu viel, aber genau das Richtige</h3>
-            <p>Ein lokaler Salon braucht keine zehn Unterseiten. Ein starke One-Page-Struktur reicht oft, wenn die Kontaktaufnahme leicht ist.</p>
-          </article>
-          <article class="faq-card">
-            <h3>Mobile zuerst denken</h3>
-            <p>Die meisten Kunden kommen ueber das Handy. Darum muessen Telefon, Adresse, Zeiten und Karte ohne Zoomen sofort lesbar sein.</p>
-          </article>
-          <article class="faq-card">
-            <h3>Google-Eindruck verbessern</h3>
-            <p>Eine eigene Website plus gepflegtes Google-Unternehmensprofil wirkt deutlich vertrauenswuerdiger als nur ein Branchenbucheintrag.</p>
-          </article>
-        </div>
       </div>
     </section>
   </main>
@@ -927,10 +871,10 @@
       <div class="footer-bar">
         <div>
           <strong>City Cut Express Demo</strong><br />
-          Gebaut als modernisierte Akquise-Version fuer einen lokalen Salon.
+          Statische HTML ohne Framework-Abhaengigkeit.
         </div>
         <div>
-          Nächster sinnvoller Schritt: echte Fotos, Rechtstexte, Formular-Backend und Deployment auf Vercel.
+          Fuer Vercel sollte diese Datei als `index.html` im Projekt-Root liegen.
         </div>
       </div>
     </div>
